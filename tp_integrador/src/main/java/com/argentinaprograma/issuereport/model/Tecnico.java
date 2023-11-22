@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @Entity
@@ -16,4 +18,14 @@ public class Tecnico {
     private String nombre;
     @Getter @Setter
     private String apellido;
+
+    @OneToMany
+    @JoinColumn(name="id_tecnico", referencedColumnName = "id")
+    private List<MedioComunicacion> contactos;
+
+    @ManyToMany
+    @JoinTable(name = "tecnico_especialidad",
+    joinColumns = @JoinColumn(name = "id_tecnico"),
+    inverseJoinColumns = @JoinColumn(name = "id_especialidad"))
+    private List<Especialidad> especialidades;
 }

@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @Entity
@@ -22,4 +24,12 @@ public class Cliente {
     private String nombre;
     @Getter @Setter
     private String apellido;
+
+    @ManyToMany
+    @JoinTable(
+            name = "cliente_contrata_servicio",
+            joinColumns = @JoinColumn(name = "id_cliente"),
+            inverseJoinColumns = @JoinColumn(name = "id_servicio")
+    )
+    private List<Servicio> servicios;
 }

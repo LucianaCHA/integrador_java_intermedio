@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @Entity
@@ -19,5 +21,13 @@ public class TipoProblema {
     private int tiempoEstimado;
     @Getter @Setter
     private int tiempoMaximo;
+
+    @ManyToMany
+    @JoinTable(
+            name = "tipoproblema_especialidad",
+            joinColumns = @JoinColumn(name = "id_tipoproblema"),
+            inverseJoinColumns = @JoinColumn(name = "id_especialidad")
+    )
+    private List<Especialidad> especialidades;
 
 }
