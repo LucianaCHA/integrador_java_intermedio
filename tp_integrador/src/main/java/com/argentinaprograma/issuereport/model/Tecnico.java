@@ -19,11 +19,11 @@ public class Tecnico {
     @Getter @Setter
     private String apellido;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="id_tecnico", referencedColumnName = "id")
     private List<MedioComunicacion> contactos;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "tecnico_especialidad",
     joinColumns = @JoinColumn(name = "id_tecnico"),
     inverseJoinColumns = @JoinColumn(name = "id_especialidad"))

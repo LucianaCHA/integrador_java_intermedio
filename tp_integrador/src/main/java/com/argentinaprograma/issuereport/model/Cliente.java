@@ -25,7 +25,7 @@ public class Cliente {
     @Getter @Setter
     private String apellido;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "cliente_contrata_servicio",
             joinColumns = @JoinColumn(name = "id_cliente"),

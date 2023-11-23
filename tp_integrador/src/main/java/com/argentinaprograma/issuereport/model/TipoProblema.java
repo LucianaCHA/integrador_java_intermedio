@@ -22,7 +22,7 @@ public class TipoProblema {
     @Getter @Setter
     private int tiempoMaximo;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "tipoproblema_especialidad",
             joinColumns = @JoinColumn(name = "id_tipoproblema"),
