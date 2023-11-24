@@ -1,14 +1,12 @@
 package com.argentinaprograma.issuereport.model;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Tecnico {
     @Id
@@ -19,11 +17,11 @@ public class Tecnico {
     @Getter @Setter
     private String apellido;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name="id_tecnico", referencedColumnName = "id")
     private List<MedioComunicacion> contactos;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(name = "tecnico_especialidad",
     joinColumns = @JoinColumn(name = "id_tecnico"),
     inverseJoinColumns = @JoinColumn(name = "id_especialidad"))

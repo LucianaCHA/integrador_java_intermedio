@@ -32,7 +32,7 @@ public class Incidente {
     private LocalDate fechaEstimadaResolucion;
     private EstadoEnum estado;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany()
     @JoinTable(
             name = "incidente_formadopor_tipoproblema",
             joinColumns = @JoinColumn(name = "id_incidente"),
@@ -40,15 +40,15 @@ public class Incidente {
     )
     private List<TipoProblema> tiposProblema;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "id_cliente", referencedColumnName = "id")
     private Cliente cliente;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "incidente_id", referencedColumnName = "id")
+    @OneToMany()
+    @JoinColumn(name = "id_incidente", referencedColumnName = "id")
     private List<Tecnico> tecnicos;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany()
     @JoinTable(
             name = "incidente_sobre_especialidad",
             joinColumns = @JoinColumn(name = "id_incidente"),
@@ -57,7 +57,7 @@ public class Incidente {
     private List <Especialidad> especialidades;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "id_servicio", referencedColumnName = "id")
     private Servicio servicio;
 
