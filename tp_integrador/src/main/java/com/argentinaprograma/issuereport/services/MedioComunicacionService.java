@@ -24,4 +24,8 @@ public class MedioComunicacionService {
         return medioComunicacionRepository.findAll();
     }
 
+    public void eliminarTodos(){
+        medioComunicacionRepository.deleteAll();;
+    }
+
 }

@@ -46,9 +46,9 @@ public class Incidente {
     @JoinColumn(name = "id_cliente", referencedColumnName = "id")
     private Cliente cliente;
 
-    @OneToMany()
-    @JoinColumn(name = "id_incidente", referencedColumnName = "id")
-    private List<Tecnico> tecnicos;
+    @OneToOne()
+    @JoinColumn(name = "asignado_a", referencedColumnName = "id")
+        private Tecnico tecnico;
 
     @ManyToMany()
     @JoinTable(
