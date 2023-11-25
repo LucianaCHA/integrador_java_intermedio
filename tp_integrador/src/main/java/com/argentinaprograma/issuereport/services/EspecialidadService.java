@@ -22,4 +22,12 @@ public class EspecialidadService {
     public List<Especialidad> buscarTodos(){
         return especialidadRepository.findAll();
     }
+
+    public void eliminarPorId(int id){
+        especialidadRepository.deleteById(id);
+    }
+
+    public void eliminarTodos(){
+        especialidadRepository.deleteAll();
+    }
 }

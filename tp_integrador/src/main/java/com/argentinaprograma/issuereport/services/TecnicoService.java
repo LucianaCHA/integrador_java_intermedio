@@ -23,4 +23,8 @@ public class TecnicoService {
         return tecnicoRepository.findAll();
     }
 
+    public void eliminarTodos(){
+        tecnicoRepository.deleteAll();
+    }
+
 }
