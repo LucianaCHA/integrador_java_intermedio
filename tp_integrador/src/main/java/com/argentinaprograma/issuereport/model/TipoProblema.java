@@ -12,6 +12,7 @@ import java.util.List;
 public class TipoProblema {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
     private int id;
     @Getter @Setter
     private String tipo;
@@ -20,7 +21,7 @@ public class TipoProblema {
     @Getter @Setter
     private int tiempoMaximo;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany()
     @JoinTable(
             name = "tipoproblema_especialidad",
             joinColumns = @JoinColumn(name = "id_tipoproblema"),

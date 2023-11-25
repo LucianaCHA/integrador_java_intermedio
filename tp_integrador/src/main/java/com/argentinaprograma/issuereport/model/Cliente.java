@@ -11,6 +11,7 @@ import java.util.List;
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
     private int id;
     @Getter @Setter
     private long cuit;

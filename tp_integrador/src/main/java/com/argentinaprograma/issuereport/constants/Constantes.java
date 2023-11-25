@@ -88,7 +88,8 @@ public class Constantes {
         List.of(problema1, problema2),
         cliente1,
         TECNICOS.get(0),
-        servicio1
+        servicio1,
+        List.of(especialidad1, especialidad2)
     );
 
     public static final Incidente incidente2 = new Incidente(
@@ -99,7 +100,8 @@ public class Constantes {
         List.of(problema3, problema4),
         cliente2,
         TECNICOS.get(1),
-        servicio2
+        servicio2,
+        List.of(especialidad3, especialidad4)
     );
 
     public static List<Incidente> INCIDENTES = List.of(incidente1, incidente2);

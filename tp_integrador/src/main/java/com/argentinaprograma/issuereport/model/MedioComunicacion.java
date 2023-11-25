@@ -12,6 +12,7 @@ import lombok.*;
 public class MedioComunicacion {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
     private int id;
     @Getter @Setter
     private MedioEnum medio;

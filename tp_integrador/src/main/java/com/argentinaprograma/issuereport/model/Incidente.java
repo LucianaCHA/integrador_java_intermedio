@@ -1,21 +1,20 @@
 package com.argentinaprograma.issuereport.model;
 import com.argentinaprograma.issuereport.enums.EstadoEnum;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="incidente")
 public class Incidente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
     private int id;
     @Getter @Setter
     private String titulo;
@@ -48,7 +47,7 @@ public class Incidente {
 
     @ManyToOne()
     @JoinColumn(name = "asignado_a", referencedColumnName = "id")
-        private Tecnico tecnico;
+    private Tecnico tecnico;
 
     @ManyToMany()
     @JoinTable(
@@ -64,7 +63,7 @@ public class Incidente {
     private Servicio servicio;
 
 
-    public Incidente(String titulo, String descripcion, String consideraciones, LocalDate fechaIngreso, List<TipoProblema> tiposProblema, Cliente cliente, Tecnico tecnico, Servicio servicio) {
+    public Incidente(String titulo, String descripcion, String consideraciones, LocalDate fechaIngreso, List<TipoProblema> tiposProblema, Cliente cliente, Tecnico tecnico, Servicio servicio, List<Especialidad> especialidades) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.consideraciones = consideraciones;
@@ -73,6 +72,7 @@ public class Incidente {
         this.cliente = cliente;
         this.tecnico = tecnico;
         this.servicio = servicio;
+        this.especialidades = especialidades;
         // this.setFechaEstimadaResolucion();
         this.setEstado();
         // this.setEspecialidades();
