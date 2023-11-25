@@ -29,5 +29,6 @@ public class Cliente {
             joinColumns = @JoinColumn(name = "id_cliente"),
             inverseJoinColumns = @JoinColumn(name = "id_servicio")
     )
-    private List<Servicio> servicios;
+    private List<Servicio> servicios;   
+    
 }

@@ -10,12 +10,17 @@ import lombok.*;
 @Entity
 @Table(name="medio_comunicacion")
 public class MedioComunicacion {
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Getter @Setter
     private MedioEnum medio;
     @Getter @Setter
     private String contacto;
+
+    public MedioComunicacion(MedioEnum medio, String contacto) {
+        this.medio = medio;
+        this.contacto = contacto;
+    }
 
 }
