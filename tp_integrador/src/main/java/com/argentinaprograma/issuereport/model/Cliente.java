@@ -31,4 +31,13 @@ public class Cliente {
     )
     private List<Servicio> servicios;   
     
+
+    public Cliente(long cuit, String email, String razonSocial, String nombre, String apellido, List<Servicio> servicios) {
+        this.cuit = cuit;
+        this.email = email;
+        this.razonSocial = razonSocial;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.servicios = servicios;
+        }
 }

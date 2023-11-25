@@ -22,4 +22,6 @@ public class ClienteService {
     public List<Cliente> buscarTodos(){
         return  clienteRepository.findAll();
     }
+
+    
 }

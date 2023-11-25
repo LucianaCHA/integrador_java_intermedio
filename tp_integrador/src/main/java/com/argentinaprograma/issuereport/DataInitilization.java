@@ -1,19 +1,23 @@
 package com.argentinaprograma.issuereport;
 
-import com.argentinaprograma.issuereport.enums.MedioEnum;
+import com.argentinaprograma.issuereport.model.Cliente;
 import com.argentinaprograma.issuereport.model.Especialidad;
+import com.argentinaprograma.issuereport.model.Incidente;
 import com.argentinaprograma.issuereport.model.MedioComunicacion;
 import com.argentinaprograma.issuereport.model.Servicio;
 import com.argentinaprograma.issuereport.model.Tecnico;
+import com.argentinaprograma.issuereport.model.TipoProblema;
+import com.argentinaprograma.issuereport.services.ClienteService;
 import com.argentinaprograma.issuereport.services.EspecialidadService;
+import com.argentinaprograma.issuereport.services.IncidenteService;
 import com.argentinaprograma.issuereport.services.MedioComunicacionService;
+import com.argentinaprograma.issuereport.services.ServicioServices;
 import com.argentinaprograma.issuereport.services.TecnicoService;
+import com.argentinaprograma.issuereport.services.TipoProblemaService;
 import com.argentinaprograma.issuereport.constants.Constantes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.security.Provider.Service;
-import java.util.List;
 
 @Component
 public class DataInitilization {
@@ -21,18 +25,35 @@ public class DataInitilization {
     private final EspecialidadService especialidadService;
     private final MedioComunicacionService medioComunicacionService;
     private final TecnicoService tecnicoService;
+    private final ServicioServices servicioService;
+    private final TipoProblemaService tipoProblemaService;
+    private final ClienteService clienteService;
+    private final IncidenteService incidenteService;
+
 
     @Autowired
-    public DataInitilization(EspecialidadService especialidadService, MedioComunicacionService medioComunicacionService, TecnicoService tecnicoService) {
+    public DataInitilization(
+        EspecialidadService especialidadService, 
+        MedioComunicacionService medioComunicacionService, 
+        TecnicoService tecnicoService,
+        ServicioServices servicioService,
+        ClienteService clienteService,
+        TipoProblemaService tipoProblemaService,
+        IncidenteService incidenteService
+        ) {
         this.especialidadService = especialidadService;
         this.medioComunicacionService = medioComunicacionService;
         this.tecnicoService = tecnicoService;
+        this.servicioService = servicioService;
+        this.clienteService = clienteService;
+        this.tipoProblemaService = tipoProblemaService;
+        this.incidenteService = incidenteService;
     }
 
     public void deleteAllData() {
         tecnicoService.eliminarTodos();
-        medioComunicacionService.eliminarTodos();
         especialidadService.eliminarTodos();
+        medioComunicacionService.eliminarTodos();
     }
 
     public void initializeData() {
@@ -40,18 +61,22 @@ public class DataInitilization {
         inicializarEspecialidades();
         inicializarMediosComunicacion();
         inicializarTecnicos();
+        inicializarServicios();
+        inicializarClientes();
+    }
+
+    public void initializeData2() {
+        inicializarTiposProblema();
+        // inicializarIncidentes();
     }
 
     private void inicializarEspecialidades() {
-        // List<Especialidad> especialidades = Constantes.ESPECIALIDADES;
         for (Especialidad especialidad : Constantes.ESPECIALIDADES) {
             especialidadService.guardar(especialidad).getId();
         }       
     }
 
     private void inicializarMediosComunicacion() {
-
-        // List<MedioComunicacion> mediosComunicacion = Constantes.MEDIOS_COMUNICACION;
 		for (MedioComunicacion medioComunicacion : Constantes.MEDIOS_COMUNICACION) {
 			medioComunicacionService.guardar(medioComunicacion).getId();
 		}
@@ -64,5 +89,32 @@ public class DataInitilization {
         tecnicoService.guardar(tecnico).getId();
     }
     }
+
+    private void inicializarServicios() {
+        for (Servicio servicio : Constantes.SERVICIOS) {
+            servicioService.guardar(servicio).getId();
+        }
+    }
+
+    private void inicializarClientes() {
+        for (Cliente cliente : Constantes.CLIENTES) {
+            clienteService.guardar(cliente).getId();
+        }
+    }
+
+    private void inicializarIncidentes() {
+        // TODO Auto-generated method stub
+        
+
+    }
+
+    private void inicializarTiposProblema() {
+       for (TipoProblema tipoProblema : Constantes.TIPOS_PROBLEMA) {
+        tipoProblemaService.guardar(tipoProblema).getId();
+       }
+
+    }
+
+
 
 }
