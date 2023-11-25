@@ -9,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Tecnico {
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Getter @Setter
@@ -26,4 +26,11 @@ public class Tecnico {
     joinColumns = @JoinColumn(name = "id_tecnico"),
     inverseJoinColumns = @JoinColumn(name = "id_especialidad"))
     private List<Especialidad> especialidades;
+
+    public Tecnico(String nombre, String apellido, List<MedioComunicacion> contactos, List<Especialidad> especialidades) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.contactos = contactos;
+        this.especialidades = especialidades;
+    }
 }
