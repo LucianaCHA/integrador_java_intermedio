@@ -63,11 +63,8 @@ public class DataInitilization {
         inicializarTecnicos();
         inicializarServicios();
         inicializarClientes();
-    }
-
-    public void initializeData2() {
         inicializarTiposProblema();
-        // inicializarIncidentes();
+        inicializarIncidentes();
     }
 
     private void inicializarEspecialidades() {
@@ -104,7 +101,9 @@ public class DataInitilization {
 
     private void inicializarIncidentes() {
         // TODO Auto-generated method stub
-        
+        for (Incidente incidente: Constantes.INCIDENTES){
+            incidenteService.guardar(incidente).getId();
+        }
 
     }
 
@@ -114,7 +113,5 @@ public class DataInitilization {
        }
 
     }
-
-
 
 }

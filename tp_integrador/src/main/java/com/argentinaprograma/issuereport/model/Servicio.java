@@ -10,6 +10,7 @@ import lombok.*;
 public class Servicio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
     private int id;
     @Getter @Setter
     private String nombre;

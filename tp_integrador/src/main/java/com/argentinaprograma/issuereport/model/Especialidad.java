@@ -10,6 +10,7 @@ public class Especialidad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
+    @Getter
     private int id;
     @Getter @Setter
     private String nombre;
@@ -21,9 +22,9 @@ public class Especialidad {
         this.descripcion = descripcion;
     }
 
-    public int getId() {
+    /*public int getId() {
         return this.id;
-    }
+    }*/
 
 }
 

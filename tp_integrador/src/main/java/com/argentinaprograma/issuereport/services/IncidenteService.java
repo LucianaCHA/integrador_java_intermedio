@@ -22,4 +22,8 @@ public class IncidenteService {
     public List<Incidente> buscarTodos(){
         return incidenteRepository.findAll();
     }
+
+    public Incidente getById(Integer id){
+        return incidenteRepository.getById(id);
+    }
 }
