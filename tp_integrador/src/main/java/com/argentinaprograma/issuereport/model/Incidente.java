@@ -18,6 +18,8 @@ public class Incidente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Getter @Setter
+    private String titulo;
+    @Getter @Setter
     private String descripcion;
     @Getter @Setter
     private String consideraciones;
@@ -34,9 +36,9 @@ public class Incidente {
 
     @ManyToMany()
     @JoinTable(
-            name = "incidente_formadopor_tipoproblema",
+            name = "incidentes_tipos_problema",
             joinColumns = @JoinColumn(name = "id_incidente"),
-            inverseJoinColumns = @JoinColumn(name = "id_tipoproblema")
+            inverseJoinColumns = @JoinColumn(name = "id_tipo_problema")
     )
     private List<TipoProblema> tiposProblema;
 
@@ -50,7 +52,7 @@ public class Incidente {
 
     @ManyToMany()
     @JoinTable(
-            name = "incidente_sobre_especialidad",
+            name = "incidentes_especialidades",
             joinColumns = @JoinColumn(name = "id_incidente"),
             inverseJoinColumns = @JoinColumn(name = "id_especialidad")
     )
