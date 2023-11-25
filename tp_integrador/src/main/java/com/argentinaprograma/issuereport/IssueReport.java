@@ -16,8 +16,9 @@ public class IssueReport {
         DataInitilization dataInitialization = context.getBean(DataInitilization.class);
 
         dataInitialization.initializeData();
-
-        System.out.println("Anda bien");
+		// dataInitialization.initializeData2();
+		
+		System.out.println("Anda bien");
 	}
 
 }

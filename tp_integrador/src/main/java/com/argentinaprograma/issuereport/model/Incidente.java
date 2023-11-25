@@ -46,7 +46,7 @@ public class Incidente {
     @JoinColumn(name = "id_cliente", referencedColumnName = "id")
     private Cliente cliente;
 
-    @OneToOne()
+    @ManyToOne()
     @JoinColumn(name = "asignado_a", referencedColumnName = "id")
         private Tecnico tecnico;
 
@@ -62,5 +62,43 @@ public class Incidente {
     @ManyToOne()
     @JoinColumn(name = "id_servicio", referencedColumnName = "id")
     private Servicio servicio;
+
+
+    public Incidente(String titulo, String descripcion, String consideraciones, LocalDate fechaIngreso, List<TipoProblema> tiposProblema, Cliente cliente, Tecnico tecnico, Servicio servicio) {
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.consideraciones = consideraciones;
+        this.fechaIngreso = fechaIngreso;
+        this.tiposProblema = tiposProblema;
+        this.cliente = cliente;
+        this.tecnico = tecnico;
+        this.servicio = servicio;
+        // this.setFechaEstimadaResolucion();
+        this.setEstado();
+        // this.setEspecialidades();
+    }
+
+    public void setFechaEstimadaResolucion() {
+        System.out.println("setFechaEstimadaResolucion");
+        int tiempoEstimado = 0;
+        for (TipoProblema tipoProblema : this.tiposProblema) {
+            if (tipoProblema.getTiempoEstimado() > tiempoEstimado) {
+                tiempoEstimado = tipoProblema.getTiempoEstimado();
+            }
+        }
+        this.fechaEstimadaResolucion = this.fechaIngreso.plusDays(tiempoEstimado);
+    }
+
+    public void setEstado() {
+        if (this.fechaResolucion == null) {
+            this.estado = EstadoEnum.EN_PROCESO;
+        } 
+    }
+
+    public void setEspecialidades() {
+        for (TipoProblema tipoProblema : this.tiposProblema) {
+            this.especialidades.addAll(tipoProblema.getEspecialidades());
+        }
+    }
 
 }

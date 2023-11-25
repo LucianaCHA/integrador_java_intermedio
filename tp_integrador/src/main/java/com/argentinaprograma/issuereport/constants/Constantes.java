@@ -1,15 +1,20 @@
 package com.argentinaprograma.issuereport.constants;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.argentinaprograma.issuereport.enums.MedioEnum;
 import com.argentinaprograma.issuereport.model.Cliente;
 import com.argentinaprograma.issuereport.model.Especialidad;
+import com.argentinaprograma.issuereport.model.Incidente;
 import com.argentinaprograma.issuereport.model.MedioComunicacion;
 import com.argentinaprograma.issuereport.model.Servicio;
 import com.argentinaprograma.issuereport.model.Tecnico;
+import com.argentinaprograma.issuereport.model.TipoProblema;
 
 public class Constantes {
+
+    private static LocalDate TODAY = Utils.getFechaActual();
     
     private static Especialidad especialidad1 = new Especialidad("Especialidad1", "Descripción de especialidad 1");
     private static Especialidad especialidad2 = new Especialidad("Especialidad2", "Descripción de especialidad 2");
@@ -53,7 +58,49 @@ public class Constantes {
 
     public static final List<Servicio> SERVICIOS = List.of(servicio1, servicio2, servicio3, servicio4, servicio5);
 
+    private static final Cliente cliente1 = new Cliente(1111111, "email@cliente1.com", "Razon social 1", "Nombre responsable 1", "Apellido responsable 1", List.of(servicio1, servicio2));
 
-    // private static final Cliente cliente1 = new Cliente(1, 123456789, "empresacool@cool.com", "Empresa Cool", "Juan", "Perez", List.of());
-    
-}
+    private static final Cliente cliente2 = new Cliente(2222222, "email@cliente2.com", "Razon social 2", "Nombre responsable 2", "Apellido responsable 2", List.of(servicio3, servicio4));
+
+    private static final Cliente cliente3 = new Cliente(3333333, "email@cliente3.com.ar", "Razon social 3", "Nombre responsable 3", "Apellido responsable 3", List.of(servicio5));
+
+    public static final List<Cliente> CLIENTES = List.of(cliente1, cliente2, cliente3);
+
+    public static final TipoProblema problema0 = new TipoProblema(0, "Problema 0", 1, 2, List.of(especialidad1));
+
+    public static final TipoProblema problema1 = new TipoProblema(1, "Problema 1", 1, 2, List.of(especialidad1, especialidad2));
+
+    public static final TipoProblema problema2 = new TipoProblema(2, "Problema 2", 2, 4, List.of(especialidad3, especialidad4));
+
+    public static final TipoProblema problema3 = new TipoProblema(3, "Problema 3", 3, 5, List.of(especialidad5, especialidad6));
+
+    public static final TipoProblema problema4 = new TipoProblema(4, "Problema 4", 4, 6, List.of(especialidad7));
+
+    public static final TipoProblema problema5 = new TipoProblema(5, "Problema 5", 5, 7, List.of(especialidad6, especialidad2));
+
+    public static List <TipoProblema> TIPOS_PROBLEMA = List.of(problema0, problema1, problema2, problema3, problema4, problema5);
+
+    public static final Incidente incidente1 = new Incidente(
+        "Titulo incidente 1",
+        "Descripción incidente 1",
+        "Consideraciones incidente 1",
+        TODAY,
+        List.of(problema1, problema2),
+        cliente1,
+        TECNICOS.get(0),
+        servicio1
+    );
+
+    public static final Incidente incidente2 = new Incidente(
+        "Titulo incidente 2",
+        "Descripción incidente 2",
+        "Consideraciones incidente 2",
+        TODAY,
+        List.of(problema3, problema4),
+        cliente2,
+        TECNICOS.get(1),
+        servicio2
+    );
+
+    public static List<Incidente> INCIDENTES = List.of(incidente1, incidente2);
+     }
