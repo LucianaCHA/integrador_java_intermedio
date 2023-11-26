@@ -16,7 +16,6 @@ public class IssueReport {
 
         DataInitilization dataInitialization = context.getBean(DataInitilization.class);
 		MenuIntialization menuIntialization = context.getBean(MenuIntialization.class);
-
 		TecnicoService tecnicoService = context.getBean(TecnicoService.class);
 
 	
