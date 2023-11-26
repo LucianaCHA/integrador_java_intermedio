@@ -63,42 +63,38 @@ public class Incidente {
     private Servicio servicio;
 
 
-    public Incidente(String titulo, String descripcion, String consideraciones, LocalDate fechaIngreso, List<TipoProblema> tiposProblema, Cliente cliente, Tecnico tecnico, Servicio servicio, List<Especialidad> especialidades) {
+    public Incidente(String titulo, String descripcion, String consideraciones, LocalDate fechaIngreso, LocalDate fechaEstimadaResolucion, List<TipoProblema> tiposProblema, Cliente cliente, Tecnico tecnico, Servicio servicio, List<Especialidad> especialidades) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.consideraciones = consideraciones;
         this.fechaIngreso = fechaIngreso;
+        this.fechaEstimadaResolucion = fechaEstimadaResolucion;
         this.tiposProblema = tiposProblema;
         this.cliente = cliente;
         this.tecnico = tecnico;
         this.servicio = servicio;
         this.especialidades = especialidades;
-        // this.setFechaEstimadaResolucion();
         this.setEstado();
-        // this.setEspecialidades();
     }
-
-    public void setFechaEstimadaResolucion() {
-        System.out.println("setFechaEstimadaResolucion");
-        int tiempoEstimado = 0;
-        for (TipoProblema tipoProblema : this.tiposProblema) {
-            if (tipoProblema.getTiempoEstimado() > tiempoEstimado) {
-                tiempoEstimado = tipoProblema.getTiempoEstimado();
-            }
-        }
-        this.fechaEstimadaResolucion = this.fechaIngreso.plusDays(tiempoEstimado);
-    }
+    
 
     public void setEstado() {
         if (this.fechaResolucion == null) {
             this.estado = EstadoEnum.EN_PROCESO;
-        } 
+         } else {
+            this.estado = EstadoEnum.FINALIZADO; 
+         }
     }
 
     public void setEspecialidades() {
         for (TipoProblema tipoProblema : this.tiposProblema) {
             this.especialidades.addAll(tipoProblema.getEspecialidades());
         }
+    }
+
+    public void setFechaResolucion(LocalDate fechaResolucion) {
+        this.fechaResolucion = fechaResolucion;
+        this.setEstado();
     }
 
 }

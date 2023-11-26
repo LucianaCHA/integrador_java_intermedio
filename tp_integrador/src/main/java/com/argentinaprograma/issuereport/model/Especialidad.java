@@ -22,9 +22,5 @@ public class Especialidad {
         this.descripcion = descripcion;
     }
 
-    /*public int getId() {
-        return this.id;
-    }*/
-
 }
 
