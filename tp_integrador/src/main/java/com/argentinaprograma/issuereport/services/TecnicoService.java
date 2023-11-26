@@ -69,10 +69,12 @@ public class TecnicoService {
         }
 
         Tecnico tecnico = tecnicoRepository.findById(idConMasIncidentes(cantidadPorTecnico)).get();
-
-        return "El técnico con más incidentes resueltos en los últimos " + dias + " días es: " + tecnico.getNombre() + " " + tecnico.getApellido() + " con " + cantidadPorTecnico.get(tecnico.getId()) + " incidentes resueltos";
-
-    }
+        return "El técnico con más incidentes resueltos en los últimos " + dias + " días es: \r\n" +
+                    "ID: " + tecnico.getId() + "\r\n" +
+                    "Nombre y apellido: " + tecnico.getNombre() + ", "
+                    + tecnico.getApellido() + "\r\n" +
+                    "Con " +  cantidadPorTecnico.get(tecnico.getId()) +  " incidentes resueltos";
+                    }
 
 
 
@@ -86,15 +88,17 @@ public class TecnicoService {
                         (incidente.getFechaResolucion().isEqual(desde) || incidente.getFechaResolucion().isAfter(desde)))
 
                 .toList();
-        System.out.println("incidentes" + incidentes);
 
         Map<Integer, Long> cantidadPorTecnico = cantidadesPorTecnico(incidentes);
 
         if(cantidadPorTecnico.isEmpty()){
             return "No hay incidentes resueltos en los últimos " + dias + " días" + " para la especialidad elegida";
         }
-
-        return "El técnico con más incidentes resueltos en los últimos " + dias + " días" + " para la especialidad " + incidentes.get(0).getEspecialidades().get(0).getNombre() + " es: " + tecnicoRepository.findById(idConMasIncidentes(cantidadPorTecnico)).get().getNombre() + " " + tecnicoRepository.findById(idConMasIncidentes(cantidadPorTecnico)).get().getApellido() + " con " + cantidadPorTecnico.get(idConMasIncidentes(cantidadPorTecnico)) + " incidentes resueltos";        
+        return "El técnico con más incidentes resueltos en los últimos " + dias + " días para la especialidad " + incidentes.get(0).getEspecialidades().get(0).getNombre() + " es: \r\n" +
+                    "ID: " + tecnicoRepository.findById(idConMasIncidentes(cantidadPorTecnico)).get().getId() + "\r\n" +
+                    "Nombre y apellido: " + tecnicoRepository.findById(idConMasIncidentes(cantidadPorTecnico)).get().getNombre()+ ", "
+                    + tecnicoRepository.findById(idConMasIncidentes(cantidadPorTecnico)).get().getApellido() + "\r\n" +
+                    "Con " +  cantidadPorTecnico.get(idConMasIncidentes(cantidadPorTecnico))  +  " incidentes resueltos";      
         
     }
 

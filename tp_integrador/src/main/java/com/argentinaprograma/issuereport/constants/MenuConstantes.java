@@ -2,7 +2,7 @@ package com.argentinaprograma.issuereport.constants;
 
 public class MenuConstantes {
 
-    public static final String MENSAJE_INICIO_MENU = "Elija una opción:";
+    public static final String MENSAJE_INICIO_MENU = "\n\n Elija una opción:";
     public static final String MENSAJE_INGRESE_DIAS = "Ingrese la cantidad de días";
     public static final String MENSAJE_ELEGIR_ESPECIALIDAD = "Elija una especialidad:";
     public static final String MENSAJE_CONTINUAR_SALIR = "¿Desea realizar una nueva consulta? 1 para continuar, cualquier otro número para salir";

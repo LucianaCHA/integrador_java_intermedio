@@ -40,7 +40,6 @@ public class EspecialidadService {
         especialidades.forEach(especialidad -> {
             listaNombresEspecialidades[especialidad.getId()] = especialidad.getNombre();
         });
-        System.out.println("listaNombresEspecialidades" + listaNombresEspecialidades);
         return listaNombresEspecialidades;
     }
 
