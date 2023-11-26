@@ -52,9 +52,19 @@ public class TecnicoService {
                         (incidente.getFechaResolucion().isEqual(desde) || incidente.getFechaResolucion().isAfter(desde)))
                 .toList();
         Map<Integer, Long> cantidadPorTecnico = cantidadesPorTecnico(incidentes);
-        System.out.println(cantidadPorTecnico);
+        cantidadPorTecnico.entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .ifPresent(
+                        entry -> {
+                            System.out.println("El técnico con más incidentes resueltos en los últimos " + dias + " días es: ");
+                            System.out.println("ID: " + entry.getKey());
+                            System.out.println("Nombre: " + tecnicoRepository.findById(entry.getKey()).get().getNombre());
+                            System.out.println("Apellido: " + tecnicoRepository.findById(entry.getKey()).get().getApellido());
+                            System.out.println("Cantidad de incidentes resueltos: " + entry.getValue());
+                        }
+                );
 
-        //System.out.println(incidentes);
+
         return new Tecnico();
 
     }
