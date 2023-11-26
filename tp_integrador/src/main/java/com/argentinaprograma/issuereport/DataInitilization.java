@@ -100,8 +100,14 @@ public class DataInitilization {
     }
 
     private void inicializarIncidentes() {
-        // TODO Auto-generated method stub
+
         for (Incidente incidente: Constantes.INCIDENTES){
+
+            if (Constantes.INCIDENTES_RESUELTOS.contains(incidente)){
+                incidente.setFechaResolucion(Constantes.TODAY);
+            }         
+
+
             incidenteService.guardar(incidente).getId();
         }
 
