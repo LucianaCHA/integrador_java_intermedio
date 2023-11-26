@@ -350,11 +350,6 @@ public class Constantes {
         incidente11, incidente12, incidente13, incidente14, incidente15, incidente16
     );
 
-    public static void completarIncidentes() {
-        for (Incidente incidente : INCIDENTES_RESUELTOS) {
-            incidente.setFechaResolucion(TODAY);
-        }
-    }
     public static List<Incidente> INCIDENTES = new ArrayList<>(INCIDENTES_NO_RESUELTOS);
 
 static {

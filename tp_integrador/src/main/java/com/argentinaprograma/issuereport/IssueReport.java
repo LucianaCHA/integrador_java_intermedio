@@ -1,10 +1,12 @@
 package com.argentinaprograma.issuereport;
 
-import com.argentinaprograma.issuereport.services.IncidenteService;
+import com.argentinaprograma.issuereport.constants.MenuConstantes;
+import com.argentinaprograma.issuereport.model.Especialidad;
+import com.argentinaprograma.issuereport.services.EspecialidadService;
 import com.argentinaprograma.issuereport.services.TecnicoService;
 
 import java.util.Scanner;
-
+import java.util.List;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,61 +17,25 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class IssueReport {
 
 	public static void main(String[] args) {
-		// la comenté porque se ejecuta dos veces
-		// SpringApplication.run(IssueReport.class, args);
 
 		ConfigurableApplicationContext context = SpringApplication.run(IssueReport.class, args);
 
         DataInitilization dataInitialization = context.getBean(DataInitilization.class);
 		TecnicoService tecnicoService = context.getBean(TecnicoService.class);
-		IncidenteService incidenteService = context.getBean(IncidenteService.class);
+		EspecialidadService especialidadService = context.getBean(EspecialidadService.class);
+
+		List<Especialidad> especialidades = especialidadService.buscarTodos();
 		if(tecnicoService.buscarTodos().size() == 0){
 			dataInitialization.initializeData();
 		}
 
-		// tecnicoService.conMasIncidentesResueltosEnXDias(5);
-
-		// String [] opcionesMenu ={
-		// 	"Técnico con más incidentes resueltos en los últimos N días",
-		// 	"Técnico con más incidentes resueltos en los últimos N días por especialidad",
-		// 	"Técnico que resolvió más rápido los incidentes asignados",
-		// 	"Salir"
-		// };
-
-		// int opciónELegida = JOptionPane.showOptionDialog(null, "Elija una opción", "Menú", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opcionesMenu, opcionesMenu[0]);
-
-		// switch (opciónELegida) {
-		// 	case 0:
-		// 		tecnicoService.conMasIncidentesResueltosEnXDias(5);
-		// 		break;
-		// 	case 1:
-		// 		System.out.println("Elegiste la opción 2");
-		// 		break;
-		// 	case 2:
-		// 		System.out.println("Elegiste la opción 3");
-		// 		break;
-		// 	case 3:
-		// 		System.exit(0);
-		// 		break;
-		// 	default:
-		// 		break;
-		// }
-
 		Scanner scanner = new Scanner(System.in);
-
-        String[] opcionesMenu = {
-                "Técnico con más incidentes resueltos en los últimos N días",
-                "Técnico con más incidentes resueltos en los últimos N días por especialidad",
-                "Técnico que resolvió más rápido los incidentes asignados",
-                "Salir"
-        };
 
         System.out.println("Elija una opción:");
 
-        for (int i = 0; i < opcionesMenu.length; i++) {
-            System.out.println((i + 1) + ". " + opcionesMenu[i]);
+        for (int i = 0; i < MenuConstantes.MENU_PRINCIPAL.length; i++) {
+            System.out.println((i + 1) + ". " + MenuConstantes.MENU_PRINCIPAL[i]);
         }
-
         int opcionElegida = scanner.nextInt();
 
         switch (opcionElegida) {
@@ -77,11 +43,27 @@ public class IssueReport {
 				int dias = 0;
 				System.out.println("Ingrese la cantidad de días");
 				dias = scanner.nextInt();
-                tecnicoService.conMasIncidentesResueltosEnXDias(dias);
+                String resultado =  tecnicoService.conMasIncidentesResueltosEnXDias(dias);
+
+				System.out.println(resultado);
 
                 break;
             case 2:
-                System.out.println("Elegiste la opción 2");
+				System.out.println("Elija una especialidad:");
+				
+				for (int i = 0; i < especialidades.size(); i++) {
+					System.out.println((i + 1) + ". " + especialidades.get(i).getNombre());
+				}
+				int especialidadElegida = scanner.nextInt() - 1;
+
+				System.out.println("Ingrese la cantidad de días");
+
+				dias = scanner.nextInt();
+
+				resultado = tecnicoService.conMasIncidentesPorEspecialidad(dias, especialidadElegida);
+
+				System.out.println(resultado);
+
                 break;
             case 3:
                 System.out.println("Elegiste la opción 3");
@@ -89,12 +71,12 @@ public class IssueReport {
             case 4:
                 System.exit(0);
                 break;
+			
             default:
                 System.out.println("Opción no válida");
                 break;
         }
 		scanner.close();
-		System.out.println("Anda bien");
 	}
 
 }

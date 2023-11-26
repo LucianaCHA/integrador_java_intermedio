@@ -97,4 +97,8 @@ public class Incidente {
         this.setEstado();
     }
 
+    public List<Especialidad> getEspecialidades() {
+        return this.especialidades;
+    }
+
 }

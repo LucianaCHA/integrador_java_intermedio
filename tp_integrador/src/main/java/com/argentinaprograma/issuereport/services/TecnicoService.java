@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -42,32 +43,58 @@ public class TecnicoService {
                         Collectors.counting()
                 ));
     }
+
+    public Integer idConMasIncidentes(Map<Integer, Long> tecnicos){
+        return tecnicos.entrySet().stream()
+                .max(Comparator.comparing(Map.Entry::getValue))
+                .map(Map.Entry::getKey)
+                .orElse(null);
+    }
+
+ 
     @Transactional
-    public Tecnico conMasIncidentesResueltosEnXDias(int dias){
+    public String conMasIncidentesResueltosEnXDias(int dias){
         LocalDate desde = LocalDate.now().minusDays(dias);
-        System.out.println(desde);
-        List<Incidente> incidentes = incidenteService.buscarTodos()
+         List<Incidente> incidentes = incidenteService.buscarTodos()
                 .stream()
                 .filter(incidente -> incidente.getEstado() == EstadoEnum.FINALIZADO &&
                         (incidente.getFechaResolucion().isEqual(desde) || incidente.getFechaResolucion().isAfter(desde)))
                 .toList();
         Map<Integer, Long> cantidadPorTecnico = cantidadesPorTecnico(incidentes);
-        cantidadPorTecnico.entrySet().stream()
-                .max(Map.Entry.comparingByValue())
-                .ifPresent(
-                        entry -> {
-                            System.out.println("El técnico con más incidentes resueltos en los últimos " + dias + " días es: ");
-                            System.out.println("ID: " + entry.getKey());
-                            System.out.println("Nombre: " + tecnicoRepository.findById(entry.getKey()).get().getNombre());
-                            System.out.println("Apellido: " + tecnicoRepository.findById(entry.getKey()).get().getApellido());
-                            System.out.println("Cantidad de incidentes resueltos: " + entry.getValue());
-                        }
-                );
 
+        if(cantidadPorTecnico.isEmpty()){
+            return "No hay incidentes resueltos en los últimos " + dias + " días";
+        }
 
-        return new Tecnico();
+        Tecnico tecnico = tecnicoRepository.findById(idConMasIncidentes(cantidadPorTecnico)).get();
+
+        return "El técnico con más incidentes resueltos en los últimos " + dias + " días es: " + tecnico.getNombre() + " " + tecnico.getApellido() + " con " + cantidadPorTecnico.get(tecnico.getId()) + " incidentes resueltos";
 
     }
 
 
+
+    @Transactional
+    public String conMasIncidentesPorEspecialidad(int dias, int especialidadId){
+        LocalDate desde = LocalDate.now().minusDays(dias);
+       List<Incidente> incidentes = incidenteService.buscarTodos()
+                .stream()
+                .filter((incidente -> incidente.getEspecialidades().stream().anyMatch(especialidad -> especialidad.getId() == especialidadId)))
+                .filter(incidente -> incidente.getEstado() == EstadoEnum.FINALIZADO &&
+                        (incidente.getFechaResolucion().isEqual(desde) || incidente.getFechaResolucion().isAfter(desde)))
+
+                .toList();
+        System.out.println("incidentes" + incidentes);
+
+        Map<Integer, Long> cantidadPorTecnico = cantidadesPorTecnico(incidentes);
+
+        if(cantidadPorTecnico.isEmpty()){
+            return "No hay incidentes resueltos en los últimos " + dias + " días" + " para la especialidad elegida";
+        }
+
+        return "El técnico con más incidentes resueltos en los últimos " + dias + " días" + " para la especialidad " + incidentes.get(0).getEspecialidades().get(0).getNombre() + " es: " + tecnicoRepository.findById(idConMasIncidentes(cantidadPorTecnico)).get().getNombre() + " " + tecnicoRepository.findById(idConMasIncidentes(cantidadPorTecnico)).get().getApellido() + " con " + cantidadPorTecnico.get(idConMasIncidentes(cantidadPorTecnico)) + " incidentes resueltos";        
+        
+
+
+    }
 }
