@@ -66,7 +66,8 @@ public class IssueReport {
 
                 break;
             case 3:
-                System.out.println("Elegiste la opción 3");
+                resultado = tecnicoService.tecnicoMasRapido();
+				System.out.println(resultado);
                 break;
             case 4:
                 System.exit(0);
