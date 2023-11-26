@@ -34,8 +34,10 @@ public class Constantes {
     private static  MedioComunicacion medio1t5 = new MedioComunicacion(MedioEnum.EMAIL, "tecnico5@gmail.com");
     private static  MedioComunicacion medio1t6 = new MedioComunicacion(MedioEnum.WHATSAPP, "596231544111");
     private static  MedioComunicacion medio1t7 = new MedioComunicacion(MedioEnum.WHATSAPP, "365415151551");
+    private static  MedioComunicacion medio1t8 = new MedioComunicacion(MedioEnum.EMAIL, "tecniconro8@gmail.com");
+    private static  MedioComunicacion medio1t9 = new MedioComunicacion(MedioEnum.WHATSAPP, "02211544154154");
 
-    public static final List<MedioComunicacion> MEDIOS_COMUNICACION = List.of(medio1t1, medio1t2, medio1t3, medio1t4, medio1t5, medio1t6, medio1t7);
+    public static final List<MedioComunicacion> MEDIOS_COMUNICACION = List.of(medio1t1, medio1t2, medio1t3, medio1t4, medio1t5, medio1t6, medio1t7, medio1t8, medio1t9);
 
     public static List<Tecnico> TECNICOS = List.of(
             new Tecnico("Tecnico1", "Apellido1", List.of(medio1t1, medio1t2), List.of(especialidad1, especialidad2)),
@@ -44,8 +46,8 @@ public class Constantes {
             new Tecnico("Tecnico4", "Apellido4", List.of(medio1t5), List.of(especialidad7)),
             new Tecnico("Tecnico5", "Apellido5", List.of(medio1t6), List.of(especialidad1, especialidad2)),
             new Tecnico("Tecnico6", "Apellido6", List.of(medio1t7), List.of(especialidad3, especialidad4)),
-            new Tecnico("Tecnico7", "Apellido7", List.of(medio1t1), List.of(especialidad5, especialidad6)),
-            new Tecnico("Tecnico8", "Apellido8", List.of(medio1t2), List.of(especialidad7))
+            new Tecnico("Tecnico7", "Apellido7", List.of(medio1t9), List.of(especialidad5, especialidad6)),
+            new Tecnico("Tecnico8", "Apellido8", List.of(medio1t8), List.of(especialidad7))
     );
 
     private static final Servicio servicio1 = new Servicio("Servicio1", "Descripción de servicio 1");
@@ -348,11 +350,6 @@ public class Constantes {
         incidente11, incidente12, incidente13, incidente14, incidente15, incidente16
     );
 
-    public static void completarIncidentes() {
-        for (Incidente incidente : INCIDENTES_RESUELTOS) {
-            incidente.setFechaResolucion(TODAY);
-        }
-    }
     public static List<Incidente> INCIDENTES = new ArrayList<>(INCIDENTES_NO_RESUELTOS);
 
 static {

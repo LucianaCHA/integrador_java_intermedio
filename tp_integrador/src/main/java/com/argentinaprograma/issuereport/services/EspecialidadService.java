@@ -4,6 +4,8 @@ import com.argentinaprograma.issuereport.model.Especialidad;
 import com.argentinaprograma.issuereport.repository.EspecialidadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.argentinaprograma.issuereport.services.EspecialidadService;
+
 
 import java.util.List;
 
@@ -29,5 +31,20 @@ public class EspecialidadService {
 
     public void eliminarTodos(){
         especialidadRepository.deleteAll();
+    }
+
+    public String[] getListaNOmbresEspecialidades (){
+        List<Especialidad> especialidades = buscarTodos();
+        String[] listaNombresEspecialidades = new String[especialidades.size()];
+
+        especialidades.forEach(especialidad -> {
+            listaNombresEspecialidades[especialidad.getId()] = especialidad.getNombre();
+        });
+        System.out.println("listaNombresEspecialidades" + listaNombresEspecialidades);
+        return listaNombresEspecialidades;
+    }
+
+    public Especialidad buscarPorId(int id){
+        return especialidadRepository.findById(id).orElse(null);
     }
 }
