@@ -8,7 +8,7 @@
 		<version>3.1.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.argentinaprograma.maxipisano</groupId>
+	<groupId>tp_integrador</groupId>
 	<artifactId>practicoIntegrador</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>issuereport</name>
