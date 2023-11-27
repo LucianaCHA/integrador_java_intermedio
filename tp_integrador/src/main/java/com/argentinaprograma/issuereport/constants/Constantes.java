@@ -341,13 +341,141 @@ public class Constantes {
         List.of(especialidad1)
     );
 
+    public static final Incidente incidente21 = new Incidente(
+            "Titulo incidente 21",
+            "Descripción incidente 21",
+            "Consideraciones incidente 21",
+            TODAY,
+            TODAY.plusDays(1),
+            List.of(problema0),
+            cliente1,
+            TECNICOS.get(0),
+            servicio3,
+            List.of(especialidad2, especialidad3)
+    );
+
+    public static final Incidente incidente22 = new Incidente(
+            "Titulo incidente 22",
+            "Descripción incidente 22",
+            "Consideraciones incidente 22",
+            TODAY,
+            TODAY.plusDays(10),
+            List.of(problema4),
+            cliente2,
+            TECNICOS.get(0),
+            servicio5,
+            List.of(especialidad5)
+    );
+
+    public static final Incidente incidente23 = new Incidente(
+            "Titulo incidente 23",
+            "Descripción incidente 23",
+            "Consideraciones incidente 23",
+            TODAY,
+            TODAY,
+            List.of(problema2),
+            cliente2,
+            TECNICOS.get(3),
+            servicio2,
+            List.of(especialidad1, especialidad5)
+    );
+
+    public static final Incidente incidente24 = new Incidente(
+            "Titulo incidente 24",
+            "Descripción incidente 24",
+            "Consideraciones incidente 24",
+            TODAY,
+            TODAY.plusDays(1),
+            List.of(problema0),
+            cliente3,
+            TECNICOS.get(6),
+            servicio4,
+            List.of(especialidad4)
+    );
+
+    public static final Incidente incidente25 = new Incidente(
+            "Titulo incidente 25",
+            "Descripción incidente 25",
+            "Consideraciones incidente 25",
+            TODAY,
+            TODAY.plusDays(6),
+            List.of(problema3),
+            cliente2,
+            TECNICOS.get(5),
+            servicio2,
+            List.of(especialidad1, especialidad3)
+    );
+
+    public static final Incidente incidente26 = new Incidente(
+            "Titulo incidente 26",
+            "Descripción incidente 26",
+            "Consideraciones incidente 26",
+            TODAY,
+            TODAY.plusDays(9),
+            List.of(problema2, problema4),
+            cliente1,
+            TECNICOS.get(4),
+            servicio3,
+            List.of(especialidad4)
+    );
+
+    public static final Incidente incidente27 = new Incidente(
+            "Titulo incidente 27",
+            "Descripción incidente 27",
+            "Consideraciones incidente 27",
+            TODAY,
+            TODAY,
+            List.of(problema2, problema4, problema5),
+            cliente1,
+            TECNICOS.get(7),
+            servicio2,
+            List.of(especialidad3)
+    );
+    public static final Incidente incidente28 = new Incidente(
+            "Titulo incidente 28",
+            "Descripción incidente 28",
+            "Consideraciones incidente 28",
+            TODAY,
+            TODAY.plusDays(4),
+            List.of(problema4),
+            cliente2,
+            TECNICOS.get(5),
+            servicio5,
+            List.of(especialidad7)
+    );
+    public static final Incidente incidente29 = new Incidente(
+            "Titulo incidente 29",
+            "Descripción incidente 29",
+            "Consideraciones incidente 29",
+            TODAY,
+            TODAY.plusDays(1),
+            List.of(problema0),
+            cliente3,
+            TECNICOS.get(6),
+            servicio3,
+            List.of(especialidad3, especialidad6)
+    );
+    public static final Incidente incidente30 = new Incidente(
+            "Titulo incidente 30",
+            "Descripción incidente 30",
+            "Consideraciones incidente 30",
+            TODAY,
+            TODAY.plusDays(5),
+            List.of(problema2, problema5),
+            cliente1,
+            TECNICOS.get(2),
+            servicio4,
+            List.of(especialidad1)
+    );
     public static List<Incidente> INCIDENTES_RESUELTOS = List.of(
-        incidente1, incidente9,  incidente17, incidente18, incidente19, incidente20
+        incidente1, incidente9,  incidente17, incidente18, incidente19,
+        incidente20, incidente22, incidente23, incidente26, incidente28,incidente29, incidente30
     );
 
     public static List<Incidente> INCIDENTES_NO_RESUELTOS = List.of(
         incidente2, incidente3, incidente4, incidente5, incidente6, incidente7, incidente8, incidente10,
-        incidente11, incidente12, incidente13, incidente14, incidente15, incidente16
+        incidente11, incidente12, incidente13, incidente14, incidente15, incidente16, incidente21, incidente24,
+        incidente25, incidente27
     );
 
     public static List<Incidente> INCIDENTES = new ArrayList<>(INCIDENTES_NO_RESUELTOS);
